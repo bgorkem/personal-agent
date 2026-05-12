@@ -5,7 +5,8 @@ Companion code for a blog series — each post is a git tag.
 
 ## Posts
 
-- [post-01-hello-agent](./blog/POST-01.md) — the simplest possible agent loop ← **you are here**
+- [post-01-hello-agent](./blog/POST-01.md) — the simplest possible agent loop
+- [post-02-memory](./blog/POST-02.md) — giving the agent memory with SQLite + FTS5 ← **you are here**
 
 ## Requirements
 
@@ -28,29 +29,20 @@ cp .env.example .env
 npm start
 ```
 
-You should see:
-
-```
-personal-agent — type 'exit' to quit
-─────────────────────────────────────
-
-you ›
-```
-
 Try things like:
 
-- `hello, who are you?`
-- `what's the weather in london right now?` (uses WebSearch)
-- `summarise the top story on hacker news` (uses WebFetch)
+- `remember that I prefer Earl Grey over coffee`
+- `what do I like to drink?`
+- `what have we talked about lately?`
 
-Type `exit` to quit.
+The memory file lives at `data/agent.db` and is gitignored. Delete it any time to start fresh.
 
 ## What's in this version
 
-- `src/agent.ts` — the agent core, a single `runAgent(message)` function
-- `src/cli.ts` — a 20-line readline loop that calls it
-
-That's it. No memory, no scheduling, no skills. Those come next.
+- `src/agent.ts` — the agent core, with memory tools registered
+- `src/memory.ts` — SQLite + FTS5 schema and CRUD functions
+- `src/tools/memory-tools.ts` — the three tools the agent calls: save, search, list
+- `src/cli.ts` — readline loop
 
 ## License
 
